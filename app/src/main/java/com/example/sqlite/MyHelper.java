@@ -1,5 +1,6 @@
 package com.example.sqlite;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -25,7 +26,19 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         //Insert Data
+        insertData("Bhupendra","Good Boy",300.50,db);
+        insertData("Nageendra","Good Boy",300.50,db);
+        insertData("pooja","Good Boy",300.50,db);
+        insertData("mintu","Good Boy",300.50,db);
+    }
 
+    private void insertData(String name,String description,double price,SQLiteDatabase database){
+
+        ContentValues values = new ContentValues();
+        values.put("NAME",name);
+        values.put("DESCRIPTION",description);
+        values.put("PRICE",price);
+        database.insert("PRODUCTS",null,values);
     }
 
     @Override
