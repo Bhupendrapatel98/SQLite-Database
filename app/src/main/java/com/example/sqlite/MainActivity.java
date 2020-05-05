@@ -45,5 +45,7 @@ public class MainActivity extends AppCompatActivity {
         values.put("PRICE",280.00);
         database.update("PRODUCTS",values,"id=?",new String[]{"1"});
 
+        //delete
+        database.delete("PRODUCTS","id=?",new String[]{"1"});
     }
 }
