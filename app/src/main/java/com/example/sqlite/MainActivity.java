@@ -2,6 +2,7 @@ package com.example.sqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         //access MyHelper class
         MyHelper myHelper = new MyHelper(this);
-        SQLiteDatabase database = myHelper.getReadableDatabase(); //here is two methods getReadableDatabase() and WriteableDatabase
+        SQLiteDatabase database = myHelper.getWritableDatabase(); //here is two methods getReadableDatabase() and WriteableDatabase
 
         //cursor object for get data
         Cursor cursor = database.rawQuery("SELECT NAME,PRICE FROM PRODUCTS", new String[]{});
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
             Log.i("msjdhsjk", "onCreate3: " + builder.toString());
 
         } while (cursor.moveToNext());
+
+        //update
+
+        ContentValues values = new ContentValues();
+        values.put("PRICE",280.00);
+        database.update("PRODUCTS",values,"id=?",new String[]{"1"});
 
     }
 }
